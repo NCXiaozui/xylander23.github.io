@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Xylander&#39; Blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-03-24T11:06:32.805Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>About me</title>
+    <link href="http://yoursite.com/2018/03/24/About-me/"/>
+    <id>http://yoursite.com/2018/03/24/About-me/</id>
+    <published>2018-03-24T09:30:49.000Z</published>
+    <updated>2018-03-24T11:06:32.805Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt; 你好，這是我個人在GitHub上面搭建的一個基於HEXO的博客。  &lt;/p&gt;
+&lt;p&gt;以後，我會在這裡經常發佈我的一 些我的學習筆記和生活感悟。希望我們可以共同討論。 
+        
+      
+    
+    </summary>
+    
+      <category term="Introduce" scheme="http://yoursite.com/categories/Introduce/"/>
+    
+    
+      <category term="Introduce" scheme="http://yoursite.com/tags/Introduce/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2018/03/24/hello-world/"/>
+    <id>http://yoursite.com/2018/03/24/hello-world/</id>
+    <published>2018-03-24T07:46:43.541Z</published>
+    <updated>2018-03-24T07:46:43.541Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
