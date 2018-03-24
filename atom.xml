@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-03-24T11:06:32.805Z</updated>
+  <updated>2018-03-24T13:30:49.444Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spark简易笔记</title>
+    <link href="http://yoursite.com/2018/03/24/Spark%E7%AE%80%E6%98%93%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2018/03/24/Spark简易笔记/</id>
+    <published>2018-03-24T13:09:55.000Z</published>
+    <updated>2018-03-24T13:30:49.444Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Spark简介：&quot;&gt;&lt;a href=&quot;#Spark简介：&quot; class=&quot;headerlink&quot; title=&quot;Spark简介：&quot;&gt;&lt;/a&gt;Spark简介：&lt;/h1&gt;&lt;p&gt;  Spark主要核心的组件包含:Spark SQL、Spark
+        
+      
+    
+    </summary>
+    
+      <category term="Computer Science" scheme="http://yoursite.com/categories/Computer-Science/"/>
+    
+    
+      <category term="Spark" scheme="http://yoursite.com/tags/Spark/"/>
+    
+  </entry>
   
   <entry>
     <title>About me</title>
