@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Xylander&#39; Blog</title>
+  <title>理想與少年</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-03-24T13:34:54.141Z</updated>
+  <updated>2018-04-06T13:42:16.238Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>神经网络入门</title>
+    <link href="http://yoursite.com/2018/04/06/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2018/04/06/神经网络入门/</id>
+    <published>2018-04-06T09:28:13.000Z</published>
+    <updated>2018-04-06T13:42:16.238Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;p&gt;人工神经网络（简称神经网络或者类神经网络）是机器学习领域中重要的一个分支，因为其优越的表现越来越受到大家的重视。在这里，主要解释一下神经网络入门知识，包括：基本概念、神经元、全连接神经网络和反向传播算法。&lt;/p&gt;
+&lt;p&gt;#神经网络概述&lt;/p&gt;
+&lt;h
+        
+      
+    
+    </summary>
+    
+      <category term="neural network" scheme="http://yoursite.com/categories/neural-network/"/>
+    
+    
+      <category term="CS" scheme="http://yoursite.com/tags/CS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何学好数学</title>
+    <link href="http://yoursite.com/2018/03/24/%E5%A6%82%E4%BD%95%E5%AD%A6%E5%A5%BD%E6%95%B0%E5%AD%A6/"/>
+    <id>http://yoursite.com/2018/03/24/如何学好数学/</id>
+    <published>2018-03-24T14:33:45.000Z</published>
+    <updated>2018-03-31T16:46:18.484Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;原文：&lt;a href=&quot;https://www.math.uh.edu/~dblecher/pf2.html&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Math" scheme="http://yoursite.com/categories/Math/"/>
+    
+    
+      <category term="Study" scheme="http://yoursite.com/tags/Study/"/>
+    
+  </entry>
   
   <entry>
     <title>Spark简易笔记</title>
