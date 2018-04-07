@@ -21,16 +21,40 @@
 <p>神经元计算过程可以分为两个部分：<strong>线性计算</strong>和激活函数的<strong>非线性变换</strong>。</p>
 <p>上图是具体的神经元具体的计算过程：</p>
 <ol>
-<li>接受输入$x_1,x_2…x_n​$</li>
+<li>接受输入$x_1,x_2…x_n$</li>
 <li>根据$w_1,w_2…w_n$线性求和$$z=\sum_{i=1}^{n}w_ix_i$$</li>
 <li>将线性结果$z$通过激活函数非线性变换</li>
 <li>输出结果y <h2 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h2></li>
 </ol>
-<p>激活函数是神经元重要组成部分，其作用是将之前的线性计算结果作一个非线性变换。下面列举一些常用的激活函数：</p>
+<p>激活函数是神经元重要组成部分，其作用是将之前的线性计算结果作一个非线性变换。这样就可以使神经网络应用到众多非线性模型中。下面列举一些常用的激活函数：</p>
 <ol>
 <li>Sigmoid：$f(x)=\frac{1}{1+exp(-z)}$</li>
 </ol>
-</p></div><div class="share"><span>分享到</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a href="http://twitter.com/home?status=http://yoursite.com/2018/04/06/神经网络入门/%20理想與少年%20神经网络入门" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/2018/03/24/如何学好数学/" title="如何学好数学">下一篇: 如何学好数学&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div><div id="lv-container" data-id="city" data-uid="MTAyMC8zNTE2Mi8xMTY5Nw=="><script type="text/javascript">(function (d, s) {
+<p>Sigmoid函数可以将实数映射到（0，1）之间，可以用来做二分类，在特征相差比较复杂或者相差不是特别大时效果比较好。缺点就是反向传播时就会出现梯度消失的情况，从而不能完成深层网络训练。</p>
+<ol>
+<li>Tanh(双切正切函数)：$f(z)=tanh(z)=\frac{e^z-e^{-z}}{e^z+e^{-z}}=2sigmoid(2z)-1$</li>
+</ol>
+<p>tanh在特征相差明显时效果会很好。</p>
+<ol>
+<li>ReLU(Rectified Linear Unit)=$max(0,x)$</li>
+</ol>
+<p>ReLU收敛速度会比sigmoid、tanh快很多，有效缓解了梯度消失，但是可能在训练过程中发生权重无法更新的情况。</p>
+<h1 id="全连接神经网络"><a href="#全连接神经网络" class="headerlink" title="全连接神经网络"></a>全连接神经网络</h1><p>神经网络就是许多个单一“神经元”联结在一起，这样，一个“神经元”的输出就可以是另一个“神经元”的输入。<img src="http://ufldl.stanford.edu/wiki/images/9/99/Network331.png" alt="image"></p>
+<p>上图是一个简单的神经网络示意图。我们用$n_l$表示网络层数，本例$n_l=3$，我们将第$l$层记为$L_l$,所以输入层是$L_1$，输出层是$L_{nl}$。每个圈内的+1表示偏置项。$a_i^{(l)}$表示第$l$层第$i$单元的激活值。网络中参数为$(W,b)=(W^{(1)},b^{(1)},W^{(2)},b^{(2)})$,其中$W_{ij}^{(l)}$表示第l层第j单元与第l+1层第i单元之间的权重，$b_i^{(l)}$是第l+1层第i单元的偏置项。在给定$W,b$下，我们的神经网络可以按照函数$h_{W,b}(x)$计算输出结果。本例神经网络计算步骤如下：</p>
+<p>$a_1^{2}=f(W_{11}^{(1)}x_1+W_{12}^{(1)}x_2+W_{13}^{(1)}x_3+b_1^{(1)})$</p>
+<p>$a_2^{2}=f(W_{21}^{(1)}x_1+W_{22}^{(1)}x_2+W_{23}^{(1)}x_3+b_2^{(1)})$</p>
+<p>$a_3^{2}=f(W_{31}^{(1)}x_1+W_{32}^{(1)}x_2+W_{33}^{(1)}x_3+b_3^{(1)})$</p>
+<p>$h_{W,b}(x)=a_1^{3}=f(W_{11}^{(2)}a_1^{(2)}+W_{12}^{(2)}a_2^{(2)}+W_{13}^{(2)}a_3^{(2)}+b_1^{(2)})$</p>
+<p>我们用向量表示：</p>
+<p>$z^{(2)}=W^{(1)}x+b^{(1)}$</p>
+<p>$a^{2}=f(z^{(2)})$</p>
+<p>$z^{(3)}=W^{(2)}a^{(2)}+b^{(2)}$</p>
+<p>$h_{W,b}(x)=a^{(3)}=f(z^{(3)})$</p>
+<p>我们可以将上式归纳成：</p>
+<p>$z^{(l+1)}=W^{(l)}a^{(l)}+b^{(l)}$</p>
+<p>$a^{(l+1)}=f(z^{(l+1)})$</p>
+<p>在上例中，我们发现计算结果是从上一层向下一层传递的，所以我们称之为<strong>前向传播</strong>。</p>
+<h1 id="反向传播算法"><a href="#反向传播算法" class="headerlink" title="反向传播算法"></a>反向传播算法</h1></p></div><div class="share"><span>分享到</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a href="http://twitter.com/home?status=http://yoursite.com/2018/04/06/神经网络入门/%20理想與少年%20神经网络入门" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/2018/03/24/如何学好数学/" title="如何学好数学">下一篇: 如何学好数学&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div><div id="lv-container" data-id="city" data-uid="MTAyMC8zNTE2Mi8xMTY5Nw=="><script type="text/javascript">(function (d, s) {
     var j, e = d.getElementsByTagName(s)[0];
     if (typeof LivereTower === 'function') {
         return;
