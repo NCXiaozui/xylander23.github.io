@@ -54,7 +54,55 @@
 <p>$z^{(l+1)}=W^{(l)}a^{(l)}+b^{(l)}$</p>
 <p>$a^{(l+1)}=f(z^{(l+1)})$</p>
 <p>在上例中，我们发现计算结果是从上一层向下一层传递的，所以我们称之为<strong>前向传播</strong>。</p>
-<h1 id="反向传播算法"><a href="#反向传播算法" class="headerlink" title="反向传播算法"></a>反向传播算法</h1></p></div><div class="share"><span>分享到</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a href="http://twitter.com/home?status=http://yoursite.com/2018/04/06/神经网络入门/%20理想與少年%20神经网络入门" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/2018/03/24/如何学好数学/" title="如何学好数学">下一篇: 如何学好数学&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div><div id="lv-container" data-id="city" data-uid="MTAyMC8zNTE2Mi8xMTY5Nw=="><script type="text/javascript">(function (d, s) {
+<h1 id="反向传播算法"><a href="#反向传播算法" class="headerlink" title="反向传播算法"></a>反向传播算法</h1><p>神经网络是一个监督学习算法，我们可以利用训练集的信息去训练神经网络。</p>
+<p>我们有一个训练集的标签集合${(x^{(1)},y^{(1)},..(x^{(m)},y^{(m)}))}$,可以通过梯度下降法去更新神经网络的参数。</p>
+<p>对于每个例子：</p>
+<p>$$J(W,b;x,y)=\frac{1}{2}||h_{W,b}(x)-y||^2$$</p>
+<p>通过梯度下降法计算参数W和b的负梯度方向，更新参数：</p>
+<p>$W_{ij}^{(l)}=W_{ij}^{(l)}-\alpha\frac{\partial}{\partial W_{ij}^{(l)}}J(W,b)$</p>
+<p>$b_i^{(l)}=b_i^{(l)}-\alpha \frac{\partial}{\partial b_i^{(l)}}J(W,b)$</p>
+<p>其中$\alpha$是学习速率。</p>
+<p>但是我们发现如果直接计算神经网络的参数难度很大，所以我们借助<strong>反向传播</strong>算法计算每一层的梯度。</p>
+<p>我们可以将上面参数更新公式利用偏导的链式公式展开：</p>
+<p>  $W_{ij}^{(l)}=W_{ij}^{(l)}-\alpha\frac{\partial}{\partial W_{ij}^{(l)}}J(W,b)=W_{ij}^{(l)}-\alpha\frac{\partial}{\partial z_i^{n_l}}J(W,b)\frac{z_i^{n_l}}{W_{ij}^{l}}$</p>
+<p>$b_i^{(l)}=b_i^{(l)}-\alpha \frac{\partial}{\partial b_i^{(l)}}J(W,b)=b_i^{(l)}-\alpha \frac{\partial}{\partial z_i^{n_l}}J(W,b)\frac{z_i^{n_l}}{b_i^{l}}$</p>
+<p>我们可以很容易计算出</p>
+<p>$\frac{z_i^{n_l}}{W_{ij}^{l}}=x_{ij}^{(l)}$</p>
+<p>$\frac{z_i^{n_l}}{b_i^{l}} = 1$</p>
+<p>所以我们最终需要计算的是$\frac{\partial}{\partial z_i^{n_l}}J(W,b)$,我们将这个定义为$\delta_{i}^{(l)}$，我们在计算$\delta_{i}^{(l)}$时，就可以利用反向传播算法。</p>
+<p>反向传播算法的思路如下：给定一个样例$(x,y)$，我们首先进行“前向传导”运算，计算出网络中所有的激活值，包括 $h_{wb}(x)$ 的输出值。之后，针对第 $l$ 层的每一个节点$i$，我们计算出其“残差”$\delta_{i}^{(l)}$，该残差表明了该节点对最终输出值的残差产生了多少影响。对于最终的输出节点，我们可以直接算出网络产生的激活值与实际值之间的差距，我们将这个差距定义为 $\delta _{i}^{(n_l)}$（第 <img src="http://ufldl.stanford.edu/wiki/images/math/5/b/7/5b7a0657fdea25f29866c8e1d6e884ac.png" alt="\textstyle n_l"> 层表示输出层）。对于隐藏单元我们如何处理呢？我们将基于节点残差的加权值计算$\delta _{i}^{(l)}$，这些节点以 作$\delta _{i}^{(l)}$为输入。</p>
+<ol>
+<li><p>输出层的残差计算：</p>
+<p>$\delta_i^{(n_l)} = \frac{\partial}{\partial z_i^{(n_l)}}\frac{1}{2}||y-h_{W,b}(x)||^2=\frac{\partial \frac{1}{2}||y-a_i^{(nl)}||^2}{\partial a_i^{(nl)}}\frac{\partial a_i^{(n_l)}}{\partial z_i^{(n_l)}}$</p>
+</li>
+</ol>
+<p>​       $\frac{\partial \frac{1}{2}||y-a_i^{(nl)}||^2}{\partial a_i^{(nl)}}=-(y_i-a_i^{(nl)})$</p>
+<p>​       $\frac{\partial a_i^{(nl)}}{\partial z_i^{(n_l)}}=a_i^{n_l}(1-a_i^{n_l})$</p>
+<p>​      $\delta_i^{(n_l)}=-(y_i-a_i^{(nl)})a_i^{n_l}(1-a_i^{n_l})$</p>
+<p>2.隐藏层残差计算：</p>
+<p>$\delta_i^{n_l-1}=\frac{\partial J(W,b;x,y)}{\partial z_i^{n_l-1}}=\frac{\partial}{\partial z_i^{n_l-1}}\frac{1}{2}\sum_{j=1}{S_{n_l}}(y-a_j^{(nl)})^2$</p>
+<p>$=\frac{1}{2}\sum_{j=1}^{S_{n_l}}\frac{\partial }{\partial z_i^{z_l-1}}(y_j-f(z_j^{(nl)}))^2$ </p>
+<p>$=\sum_{j=1}^{S_{n_l}}-(y_j-f(z_j^{(nl)}))\frac{\partial }{\partial z_i^{z_l-1}}f(z_j^{(n_l)})$</p>
+<p>$=\sum_{j=1}^{S_{n_l}}-(y_i-f(z_j^{(n_l)}))f^{‘}(z_j^{(n_l)})\frac{\partial z_j^{(n_l)}}{\partial z_i^{(n_l-1)}}$</p>
+<p>$=\sum_{j=1}^{S_{n_l}}\delta_j^{(n_l)}\frac{\partial z_j^{(n_l)}}{\partial z_i^{(n_l-1)}}$</p>
+<p>$=\sum_{j=1}^{S_{n_l}}\delta_j^{(n_l)}\frac{\partial \sum_{k=1}^{S_{n_l}-1}f(z_k^{(n_l-1)}W_{jk}^{n_l-1})}{\partial z_i^{(n_l-1)}}$</p>
+<p>$=a_i^{(n_l-1)}(1-a_i^{(n_l-1)})(\sum_{j=1}^{S_{n_l}}W_{ji}^{n_l-1}\delta_j^{(n_l)})$</p>
+<p>我们可以将残差写成向量的形式：</p>
+<ul>
+<li>输出层：</li>
+</ul>
+<p>​    $\vec\delta^{n_l}=\vec a^{n_l} (1-\vec a^{n_l}) (\vec y - \vec a^{n_l})$</p>
+<ul>
+<li><p>隐藏层：</p>
+<p>$\vec \delta^{n_i}=\vec a_{n_i}(1-\vec a_{n_i})W_{(n_i+1)}^T\vec \delta^{n_i+1}$ </p>
+</li>
+</ul>
+<p>其实我们可以简单总结为反向传播就是利用了求导的链式公式，从输出层作为输入去反向更新参数。</p>
+<h1 id="实例：识别手写数字"><a href="#实例：识别手写数字" class="headerlink" title="实例：识别手写数字"></a>实例：识别手写数字</h1><h2 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h2><p>识别手写数字</p>
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p>Sklearn手写数字集，大小1797</p>
+<h2 id="编程思想"><a href="#编程思想" class="headerlink" title="编程思想"></a>编程思想</h2><p>通过向量化编程，构建激活函数类、全连接网络层类和神经网络三个类</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><a href="https://github.com/xylander23/NeuralNetwork" target="_blank" rel="noopener">github</a></p>
+</p></div><div class="share"><span>分享到</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a href="http://twitter.com/home?status=http://yoursite.com/2018/04/06/神经网络入门/%20理想與少年%20神经网络入门" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/2018/03/24/如何学好数学/" title="如何学好数学">下一篇: 如何学好数学&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div><div id="lv-container" data-id="city" data-uid="MTAyMC8zNTE2Mi8xMTY5Nw=="><script type="text/javascript">(function (d, s) {
     var j, e = d.getElementsByTagName(s)[0];
     if (typeof LivereTower === 'function') {
         return;
