@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-21T08:40:18.322Z</updated>
+  <updated>2018-05-21T08:45:08.029Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>统计基础</title>
     <link href="http://yoursite.com/2018/05/21/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80/"/>
     <id>http://yoursite.com/2018/05/21/统计基础/</id>
-    <published>2018-05-21T07:51:39.823Z</published>
-    <updated>2018-05-21T08:40:18.322Z</updated>
+    <published>2018-05-21T08:37:13.000Z</published>
+    <updated>2018-05-21T08:45:08.029Z</updated>
     
     <summary type="html">
     
@@ -29,13 +29,17 @@
       
         
         
-          &lt;p&gt;title: 统计基础&lt;br&gt;date: 2018-05-21 16:37:13&lt;br&gt;tags: study&lt;br&gt;categories: math&lt;br&gt;mathjax: true&lt;/p&gt;
-&lt;h1 id=&quot;统计基础&quot;&gt;&lt;a href=&quot;#统计基础&quot;
+          &lt;h1 id=&quot;统计基础&quot;&gt;&lt;a href=&quot;#统计基础&quot; class=&quot;headerlink&quot; title=&quot;统计基础&quot;&gt;&lt;/a&gt;统计基础&lt;/h1&gt;&lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h2 id=&quot;数据与可视化-Data-and-Visualisation&quot;&gt;&lt;a
         
       
     
     </summary>
     
+      <category term="math" scheme="http://yoursite.com/categories/math/"/>
+    
+    
+      <category term="study" scheme="http://yoursite.com/tags/study/"/>
     
   </entry>
   
