@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-21T08:45:08.029Z</updated>
+  <updated>2018-05-23T02:21:15.184Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2018/05/21/%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80/"/>
     <id>http://yoursite.com/2018/05/21/统计基础/</id>
     <published>2018-05-21T08:37:13.000Z</published>
-    <updated>2018-05-21T08:45:08.029Z</updated>
+    <updated>2018-05-23T02:21:15.184Z</updated>
     
     <summary type="html">
     
@@ -36,7 +36,7 @@
     
     </summary>
     
-      <category term="math" scheme="http://yoursite.com/categories/math/"/>
+      <category term="Math" scheme="http://yoursite.com/categories/Math/"/>
     
     
       <category term="study" scheme="http://yoursite.com/tags/study/"/>
