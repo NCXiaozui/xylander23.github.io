@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-09-12T16:36:39.475Z</updated>
+  <updated>2019-04-06T13:25:15.075Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spark RDD</title>
+    <link href="http://yoursite.com/2019/04/06/Spark-RDD/"/>
+    <id>http://yoursite.com/2019/04/06/Spark-RDD/</id>
+    <published>2019-04-06T13:24:05.000Z</published>
+    <updated>2019-04-06T13:25:15.075Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Spark里面的RDD是一个非常重要的编程概念。Spark提出RDD的目标主要是为了解决之前&lt;strong&gt;大数据平台出现的数据共享问题&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;# 什么是RDD&lt;/p&gt;
+&lt;p&gt;RDD的英文全称Resilient Distributed
+        
+      
+    
+    </summary>
+    
+      <category term="SC" scheme="http://yoursite.com/categories/SC/"/>
+    
+    
+      <category term="Spark" scheme="http://yoursite.com/tags/Spark/"/>
+    
+  </entry>
   
   <entry>
     <title>logging基本用法</title>
