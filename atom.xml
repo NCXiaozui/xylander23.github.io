@@ -200,11 +200,11 @@
   </entry>
   
   <entry>
-    <title>About me</title>
+    <title>關於作者</title>
     <link href="http://yoursite.com/2018/03/24/About-me/"/>
     <id>http://yoursite.com/2018/03/24/About-me/</id>
     <published>2018-03-24T09:30:49.000Z</published>
-    <updated>2018-03-24T11:06:32.805Z</updated>
+    <updated>2019-04-06T13:43:53.853Z</updated>
     
     <summary type="html">
     
@@ -212,8 +212,9 @@
       
         
         
-          &lt;p&gt; 你好，這是我個人在GitHub上面搭建的一個基於HEXO的博客。  &lt;/p&gt;
-&lt;p&gt;以後，我會在這裡經常發佈我的一 些我的學習筆記和生活感悟。希望我們可以共同討論。 
+          &lt;p&gt;你好，這是我個人在GitHub上面搭建的一個基於HEXO的博客。 &lt;/p&gt;
+&lt;p&gt;畢業于昌航，學渣一位。 &lt;/p&gt;
+&lt;p&gt;以後，我會在這裡經常發佈我的一 些我的計算機科學的學習筆記。希望我們可以共同討論。 
         
       
     
