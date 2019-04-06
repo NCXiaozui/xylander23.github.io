@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-06T13:25:15.075Z</updated>
+  <updated>2019-04-06T13:30:02.970Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2019/04/06/Spark-RDD/"/>
     <id>http://yoursite.com/2019/04/06/Spark-RDD/</id>
     <published>2019-04-06T13:24:05.000Z</published>
-    <updated>2019-04-06T13:25:15.075Z</updated>
+    <updated>2019-04-06T13:30:02.970Z</updated>
     
     <summary type="html">
     
@@ -30,14 +30,13 @@
         
         
           &lt;p&gt;Spark里面的RDD是一个非常重要的编程概念。Spark提出RDD的目标主要是为了解决之前&lt;strong&gt;大数据平台出现的数据共享问题&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;# 什么是RDD&lt;/p&gt;
-&lt;p&gt;RDD的英文全称Resilient Distributed
+&lt;h1 id=&quot;什么是RDD&quot;&gt;&lt;a href=&quot;#什么是RDD&quot; class=&quot;headerlink&quot;
         
       
     
     </summary>
     
-      <category term="SC" scheme="http://yoursite.com/categories/SC/"/>
+      <category term="CS" scheme="http://yoursite.com/categories/CS/"/>
     
     
       <category term="Spark" scheme="http://yoursite.com/tags/Spark/"/>
@@ -49,7 +48,7 @@
     <link href="http://yoursite.com/2018/09/12/logging%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/"/>
     <id>http://yoursite.com/2018/09/12/logging基本用法/</id>
     <published>2018-09-12T15:59:47.000Z</published>
-    <updated>2018-09-12T16:36:39.475Z</updated>
+    <updated>2019-04-06T13:27:23.618Z</updated>
     
     <summary type="html">
     
@@ -63,7 +62,7 @@
     
     </summary>
     
-      <category term="cs" scheme="http://yoursite.com/categories/cs/"/>
+      <category term="CS" scheme="http://yoursite.com/categories/CS/"/>
     
     
       <category term="Python" scheme="http://yoursite.com/tags/Python/"/>

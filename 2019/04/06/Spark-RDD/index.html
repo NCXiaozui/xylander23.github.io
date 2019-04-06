@@ -1,8 +1,6 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="John Doe"><title>Spark RDD · 理想與少年</title><!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="description" content="Spark里面的RDD是一个非常重要的编程概念。Spark提出RDD的目标主要是为了解决之前大数据平台出现的数据共享问题。
-# 什么是RDD
-RDD的英文全称Resilient Distributed Dataset,中文名弹性分布式数据集。设计RDD的主要初衷是因为在之前的MapReduce框架下"><meta name="keywords" content="CS"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div id="stage" class="container"><div class="row"><div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible"><div class="vertical-text site-title"><h3 tabindex="-1" class="site-title-small"><a href="/" class="a-title">與數學和零壹斗智斗勇的理想少年</a></h3><h1 tabindex="-1" class="site-title-large"><a href="/" class="a-title">江右少年</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div id="site-nav" class="site-title-links"><ul><li><a href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/categories">Categories</a></li><li><a href="/tags">Tags</a></li><li class="soc"><a href="https://github.com/xylander23" target="_blank" rel="noopener noreferrer"><i class="fa fa-github">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="http://yoursite.com" rel="noopener noreferrer">John Doe</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div id="main-container" class="col-sm-9 col-xs-12 main-container invisible"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>Spark RDD</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2019-04-06</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a href="/categories/SC/" title="SC" class="a-tag">SC</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a href="/tags/Spark/" title="Spark" class="a-tag">Spark</a><span>&nbsp;</span></span></p><p class="post-abstract"><p>Spark里面的RDD是一个非常重要的编程概念。Spark提出RDD的目标主要是为了解决之前<strong>大数据平台出现的数据共享问题</strong>。</p>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><p># 什么是RDD</p>
-<p>RDD的英文全称Resilient Distributed Dataset,中文名弹性分布式数据集。设计RDD的主要初衷是因为在之前的MapReduce框架下面，并不能解决一个数据共享的问题。比如两个MapReduce作业共享数据只有一个办法，那就是外部存储系统(HDFS)，这样就会增加IO、数据备份以及序列化这类的开销。而RDD利用高效的数据共享概念可以很好的解决这类问题： 基于粗粒度<strong>变换(也就是RDD的转换操作)</strong>的接口，该接口会将操作应用到多个数据集上，这就使得它们可以记录创建数据集的“血统”(Lineage)，而不需要存储真正的数据，从而达到高效的容错性。这个“血统”我的理解就是会在原数据上面标记这一次的转换操作（这个是转换操作惰性操作的特性决定。），这样即使在后面的计算失败或者数据丢失以后，也可以快速地恢复。</p>
+什么是RDDRDD的英文全称Resilient Distributed Dataset,中文名弹性分布式数据集。设计RDD的主要初衷是因为在之前的MapReduce框架下面，并"><meta name="keywords" content="CS"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head><body><div id="stage" class="container"><div class="row"><div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible"><div class="vertical-text site-title"><h3 tabindex="-1" class="site-title-small"><a href="/" class="a-title">與數學和零壹斗智斗勇的理想少年</a></h3><h1 tabindex="-1" class="site-title-large"><a href="/" class="a-title">江右少年</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div id="site-nav" class="site-title-links"><ul><li><a href="/">首页</a></li><li><a href="/archives">归档</a></li><li><a href="/categories">分类</a></li><li><a href="/tags">标签</a></li><li class="soc"><a href="https://github.com/xylander23" target="_blank" rel="noopener noreferrer"><i class="fa fa-github">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2019&nbsp;<a target="_blank" href="http://yoursite.com" rel="noopener noreferrer">John Doe</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div id="main-container" class="col-sm-9 col-xs-12 main-container invisible"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>Spark RDD</a></p><p class="post-meta"><span class="date meta-item">发布于&nbsp;2019-04-06</span><span class="meta-item"><i class="fa fa-folder"></i><span>&nbsp;</span><a href="/categories/CS/" title="CS" class="a-tag">CS</a><span>&nbsp;</span></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a href="/tags/Spark/" title="Spark" class="a-tag">Spark</a><span>&nbsp;</span></span></p><p class="post-abstract"><p>Spark里面的RDD是一个非常重要的编程概念。Spark提出RDD的目标主要是为了解决之前<strong>大数据平台出现的数据共享问题</strong>。</p>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><h1 id="什么是RDD"><a href="#什么是RDD" class="headerlink" title="什么是RDD"></a>什么是RDD</h1><p>RDD的英文全称Resilient Distributed Dataset,中文名弹性分布式数据集。设计RDD的主要初衷是因为在之前的MapReduce框架下面，并不能解决一个数据共享的问题。比如两个MapReduce作业共享数据只有一个办法，那就是外部存储系统(HDFS)，这样就会增加IO、数据备份以及序列化这类的开销。而RDD利用高效的数据共享概念可以很好的解决这类问题： 基于粗粒度<strong>变换(也就是RDD的转换操作)</strong>的接口，该接口会将操作应用到多个数据集上，这就使得它们可以记录创建数据集的“血统”(Lineage)，而不需要存储真正的数据，从而达到高效的容错性。这个“血统”我的理解就是会在原数据上面标记这一次的转换操作（这个是转换操作惰性操作的特性决定。），这样即使在后面的计算失败或者数据丢失以后，也可以快速地恢复。</p>
 <p><strong>RDD的优势：</strong></p>
 <p>1.因为Spark是在内存中计算，所以计算效率会比之前MapReduce高出几倍</p>
 <p>2.容错性强，这点是因为RDD具有数据共享的特性。</p>
@@ -18,47 +16,33 @@ RDD的英文全称Resilient Distributed Dataset,中文名弹性分布式数据�
 <p>2.控制操作(Control Operation)：就是控制RDD的存储策略。这个在进行Spark优化里面会常见</p>
 <p>3.转换操作(Transformation Operation)：对RDD进行映射，变换成一个新的RDD。说明一点，转换操作是具有惰性操作的。有时候就是因为这种惰性特点，会导致一些BUG，所以要特别留意。</p>
 <p>4.行动操作(Action Operation):能够触发Spark运行的操作：一种是操作结果变成集合或者变量；二是进行数据保存。</p>
-<p># RDD的实现</p>
-<p>## 作业调度</p>
-<p>RDD执行转换操作时，<strong>调度器会根据RDD的“血统”来构建由若干调试阶段(Stage)组成的有向无环图(DAG)</strong>，每个调度阶段包含尽可能多的连续窄依赖转换。调度器按照有向无环图顺序进行计算，并最终得到目标RDD。</p>
+<h1 id="RDD的实现"><a href="#RDD的实现" class="headerlink" title="RDD的实现"></a>RDD的实现</h1><h2 id="作业调度"><a href="#作业调度" class="headerlink" title="作业调度"></a>作业调度</h2><p>RDD执行转换操作时，<strong>调度器会根据RDD的“血统”来构建由若干调试阶段(Stage)组成的有向无环图(DAG)</strong>，每个调度阶段包含尽可能多的连续窄依赖转换。调度器按照有向无环图顺序进行计算，并最终得到目标RDD。</p>
 <p>调度器的分配方式采用延时调度机制并根据数据存储位置来确定。如果一个任务需要处理的某个分区刚好存储在某个节点的内存中，则该任务会分配给该节点；如果内存中不包含该分区，那么就最佳的位置，分配给它。</p>
 <p>RDD的行动操作的执行将以宽依赖为构建调度阶段，然后每个阶段里面的窄依赖则是串行的。</p>
 <p>如果任务失败，那个可以利用调度阶段的父类信息，把任务分到其他的节点上面去。如果是调度阶段不可用了，那么就重新提交任务，并且计算丢失的分区。如果是某个任务执行缓慢，那么就会在其他节点上面执行任务副本。</p>
-<p>## 内存管理</p>
-<p>Spark提供3种持久化RDD的存储策略：<strong>未序列化Java对象在内存中、序列化的数据存于内存中、存储在磁盘中。</strong></p>
+<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><p>Spark提供3种持久化RDD的存储策略：<strong>未序列化Java对象在内存中、序列化的数据存于内存中、存储在磁盘中。</strong></p>
 <p>第一个速率是最快的，第二种是在内存有限的情况，第三种是数据太大采用的方式。</p>
 <p>对于内存的管理使用的是LRU回收算法：当计算得到一个新的RDD分区，但是没有足够空间来存储，系统会从最近最少使用的RDD回收其一个分区的空间，除非这个RDD是新分区对应的RDD。这样做是为了减少对内存的操作。</p>
-<p>## 检查点支持</p>
-<p>虽然“血统”是可以记录RDD的依赖关系，但是如果“血统”太长了，会导致恢复时间比较长，所以这个时候可以使用检查点操作保存到外部存储中去。这个对与宽依赖来说很有用，因为宽依赖是要从多个父RDD获得的，一旦丢失，那么就要重新算。而窄依赖，可以通过并行的方式从其他节点中重新计算，计算成本比较小。</p>
-<p>## 多用户管理</p>
-<p>RDD可以支持多种资源共享算法，并且动态访问资源。</p>
-<p># 编程接口</p>
-<p>Spark提供通用接口来抽象每个RDD，包括1.分区信息，数据集的最小分片；2.依赖关系：指向RDD；函数，基于父RDD计算方法；4.划分策略和数据位置的元数据。</p>
-<p>## RDD分区</p>
-<p>RDD划分成很多分区(partitions)到集群节点上，分区的多少涉及对这个RDD进行并行计算的粒度。分区是一个逻辑概念，变换前后的新旧分区在物理上可能是同一块内存或存储，这种优化是防止函数式不变性导致内存需求无限扩张。<strong>（没太懂什么叫函数式不变性）</strong></p>
+<h2 id="检查点支持"><a href="#检查点支持" class="headerlink" title="检查点支持"></a>检查点支持</h2><p>虽然“血统”是可以记录RDD的依赖关系，但是如果“血统”太长了，会导致恢复时间比较长，所以这个时候可以使用检查点操作保存到外部存储中去。这个对与宽依赖来说很有用，因为宽依赖是要从多个父RDD获得的，一旦丢失，那么就要重新算。而窄依赖，可以通过并行的方式从其他节点中重新计算，计算成本比较小。</p>
+<h2 id="多用户管理"><a href="#多用户管理" class="headerlink" title="多用户管理"></a>多用户管理</h2><p>RDD可以支持多种资源共享算法，并且动态访问资源。</p>
+<h1 id="编程接口"><a href="#编程接口" class="headerlink" title="编程接口"></a>编程接口</h1><p>Spark提供通用接口来抽象每个RDD，包括1.分区信息，数据集的最小分片；2.依赖关系：指向RDD；函数，基于父RDD计算方法；4.划分策略和数据位置的元数据。</p>
+<h2 id="RDD分区"><a href="#RDD分区" class="headerlink" title="RDD分区"></a>RDD分区</h2><p>RDD划分成很多分区(partitions)到集群节点上，分区的多少涉及对这个RDD进行并行计算的粒度。分区是一个逻辑概念，变换前后的新旧分区在物理上可能是同一块内存或存储，这种优化是防止函数式不变性导致内存需求无限扩张。<strong>（没太懂什么叫函数式不变性）</strong></p>
 <p>默认情况下，分区的数值是该程序所分配到CPU核数，如果是从HDFS文件这种外部存储读取创建，那么是文件块数，也就是文件多少个parts。</p>
-<p>## RDD首选位置</p>
-<p>RDD首选位置的原则就是为了就近原则，这样做的好处是可以防止在计算过程中的网络传输(shuffle)操作。比如，如果是创建，那么就会在文件块所在的节点，当RDD分区被缓存，则计算应该发送到缓存分区所在的节点进行，再不然回溯RDD的血统一直找到具有首选位置属性的RDD，并据此决定子RDD的位置。</p>
-<p>## RDD依赖关系</p>
-<p>RDD依赖关系分为窄依赖和宽依赖两种。</p>
+<h2 id="RDD首选位置"><a href="#RDD首选位置" class="headerlink" title="RDD首选位置"></a>RDD首选位置</h2><p>RDD首选位置的原则就是为了就近原则，这样做的好处是可以防止在计算过程中的网络传输(shuffle)操作。比如，如果是创建，那么就会在文件块所在的节点，当RDD分区被缓存，则计算应该发送到缓存分区所在的节点进行，再不然回溯RDD的血统一直找到具有首选位置属性的RDD，并据此决定子RDD的位置。</p>
+<h2 id="RDD依赖关系"><a href="#RDD依赖关系" class="headerlink" title="RDD依赖关系"></a>RDD依赖关系</h2><p>RDD依赖关系分为窄依赖和宽依赖两种。</p>
 <p>窄依赖：每个父RDD的分区都<strong>至多</strong>被一个RDD的分区使用，也就是父子关系至多是N：1</p>
 <p>宽依赖：多个子RDD的分区都依赖一个父RDD的分区，也就是父子关系1：N。</p>
 <p>像map、filter这些就是窄依赖，但是join就是宽依赖（除非父RDD已经Hash策略被划分过）</p>
 <p>在作用上，窄依赖可以在单个节点上面作业，宽依赖则要依赖shuffle完成。在节点失败以后，窄依赖只要在父RDD节点分区上重新计算，恢复更加高效，而宽依赖中，单个节点可能导致一个RDD的所有先祖RDD中的一些分区丢失，导致要重新计算。</p>
-<p>## RDD的分区计算（Iterator）</p>
-<p>RDD计算是以分区为单位的，而且计算函数对迭代器复合，不需要保存每次的计算结果。</p>
-<p>## RDD分区函数（Partitioner）</p>
-<p>分区划分对于shuffle类操作很关键。所以如果一个key数据保证在一个分区上面，那么就可以形成一个窄依赖关系，而不再是宽依赖。默认的划分器：哈希分区划分器，范围分区划分器。</p>
-<p># 创建操作</p>
-<p>创建操作有两种：</p>
+<h2 id="RDD的分区计算（Iterator）"><a href="#RDD的分区计算（Iterator）" class="headerlink" title="RDD的分区计算（Iterator）"></a>RDD的分区计算（Iterator）</h2><p>RDD计算是以分区为单位的，而且计算函数对迭代器复合，不需要保存每次的计算结果。</p>
+<h2 id="RDD分区函数（Partitioner）"><a href="#RDD分区函数（Partitioner）" class="headerlink" title="RDD分区函数（Partitioner）"></a>RDD分区函数（Partitioner）</h2><p>分区划分对于shuffle类操作很关键。所以如果一个key数据保证在一个分区上面，那么就可以形成一个窄依赖关系，而不再是宽依赖。默认的划分器：哈希分区划分器，范围分区划分器。</p>
+<h1 id="创建操作"><a href="#创建操作" class="headerlink" title="创建操作"></a>创建操作</h1><p>创建操作有两种：</p>
 <p>一种是并行集合(Parallelized Collections),接收一个已经存在的集合：sc.parallelize()</p>
 <p>二种是从外部存储创建RDD，外部存储可以是文本文件或HDFS这种: sc.textFile()</p>
 <p>textFile()可以将本地文件或者是HDFS文件转成RDD，该操作支持整个文件目录读取，文件可以是文本或者压缩文件（如gzip等。）</p>
 <p>WholeTextFiles:使用wholeTextFiles读取目录，返回的是一个字典，里面key是每个文件路径，value是文件内容。</p>
-<p># 转换操作</p>
-<p>对RDD进行映射，变换成一个新的RDD。说明一点，转换操作是具有惰性操作的。有时候就是因为这种惰性特点，会导致一些BUG，所以要特别留意。</p>
-<p>##基础转换</p>
-<p><strong>map()</strong></p>
+<h1 id="转换操作"><a href="#转换操作" class="headerlink" title="转换操作"></a>转换操作</h1><p>对RDD进行映射，变换成一个新的RDD。说明一点，转换操作是具有惰性操作的。有时候就是因为这种惰性特点，会导致一些BUG，所以要特别留意。</p>
+<h2 id="基础转换"><a href="#基础转换" class="headerlink" title="基础转换"></a>基础转换</h2><p><strong>map()</strong></p>
 <p>将数据按照map里面的函数进行重新映射</p>
 <p><strong>distinct()</strong></p>
 <p>去除RDD重复的元素</p>
@@ -70,11 +54,11 @@ RDD的英文全称Resilient Distributed Dataset,中文名弹性分布式数据�
 <p>根据权重将一个rdd分隔为多个rdd。</p>
 <p><strong>glom()</strong></p>
 <p>rdd中每一个分区所有类型为T的数据转变成元素类型为T的数组。</p>
-<p>\<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <blockquote>
 <blockquote>
 <blockquote>
-<p>rdd = sc.parallelize([1, 2, 3, 4], 2)<br>sorted(rdd.glom().collect())<br>[[1, 2], [3, 4]]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">\</span><br></pre></td></tr></table></figure></p>
+<p>rdd = sc.parallelize([1, 2, 3, 4], 2)<br>sorted(rdd.glom().collect())<br>[[1, 2], [3, 4]]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 </blockquote>
 </blockquote>
@@ -92,8 +76,7 @@ RDD的英文全称Resilient Distributed Dataset,中文名弹性分布式数据�
 <p>​    1.每个分区第一个元素的唯一ID值为该分区的索引号</p>
 <p>​    2.每个分区第N个元素唯一ID为前一个元素的ID加上该RDD的总分区数</p>
 <p>这个概括起来就是可以写成索引号+（n-1）*分区数</p>
-<p>## 键值转换操作</p>
-<p><strong>partitionBy()</strong></p>
+<h2 id="键值转换操作"><a href="#键值转换操作" class="headerlink" title="键值转换操作"></a>键值转换操作</h2><p><strong>partitionBy()</strong></p>
 <p>操作根据partitioner函数生成新的ShuffleRDD,将原RDD重新分区。</p>
 <p><strong>mapValues</strong></p>
 <p>和map差不多，但是只对键值类型的值操作。</p>
@@ -114,21 +97,18 @@ RDD的英文全称Resilient Distributed Dataset,中文名弹性分布式数据�
 <p>针对RDD[K,V]做类型SQL的连接操作。</p>
 <p><strong>subtractByKey</strong></p>
 <p>subtractByKey类似subtract,但是只对键操作。</p>
-<p># 控制操作</p>
-<p>一般情况下，执行节点60%用于缓存数据，剩下40%运行任务。</p>
+<h1 id="控制操作"><a href="#控制操作" class="headerlink" title="控制操作"></a>控制操作</h1><p>一般情况下，执行节点60%用于缓存数据，剩下40%运行任务。</p>
 <p>cache()\persist()</p>
 <p>这两个可以用于rdd的持久化，cache是persist的特例。persist()可以设置存储级别。</p>
 <p><strong>checkpoint</strong></p>
 <p>在Spark可以使用checkpoint操作设置检查点，可以切断与RDD之前依赖关系。设置检查点对包含宽依赖的长血统的RDD是很有用的，可以避免占用过多系统资源和节点失败情况下重新计算成本过高的问题。在使用checkpoint的时候要先setCheckpointDir设置好路径。</p>
 <p>之前说过，转换操作是一个惰性操作，所以有时候会因为这个特点出问题。比如在之前写代码的时候，我想for循环读文件，然后map让rdd记录它们来源，直接在map调用的函数写就可能出问题：</p>
-<p>\<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">map_label</span><span class="params">(x, source)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">​    <span class="title">return</span> <span class="params">(x,source)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">for</span> <span class="title">source</span> <span class="title">in</span> <span class="title">source_list</span>:</span></span><br><span class="line"></span><br><span class="line">​    sc.textFile(...).map(map_label)</span><br><span class="line"></span><br><span class="line">sc.saveAsTextFile()</span><br><span class="line"></span><br><span class="line">\</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">map_label</span><span class="params">(x, source)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">​    <span class="title">return</span> <span class="params">(x,source)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">for</span> <span class="title">source</span> <span class="title">in</span> <span class="title">source_list</span>:</span></span><br><span class="line"></span><br><span class="line">​    sc.textFile(...).map(map_label)</span><br><span class="line"></span><br><span class="line">sc.saveAsTextFile()</span><br></pre></td></tr></table></figure>
 <p>这种情况很有可以全部会变成最后一个source，因为map只有在saveAsTextFile才会操作，这个时候source内存已经变成了最后一个，所以需要变一下</p>
-<p>\<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">for</span> source <span class="keyword">in</span> source_list:</span><br><span class="line"></span><br><span class="line">​    sc.textFile(...).map(<span class="keyword">lambda</span> x,source=source:map_label(x, source))</span><br><span class="line"></span><br><span class="line">\</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">for</span> source <span class="keyword">in</span> source_list:</span><br><span class="line"></span><br><span class="line">​    sc.textFile(...).map(<span class="keyword">lambda</span> x,source=source:map_label(x, source))</span><br></pre></td></tr></table></figure>
 <p>这样在map的时候也会记录这个时候的source值。</p>
-<p># 行动操作</p>
-<p>行动操作有两种，一种是产生新的变量或者集合(比如collect())，二是保存数据。特别说一下，reduceByKey不是行动操作，而是转换操作。</p>
-<p>## 集合标量操作</p>
-<p><strong>first()</strong></p>
+<h1 id="行动操作"><a href="#行动操作" class="headerlink" title="行动操作"></a>行动操作</h1><p>行动操作有两种，一种是产生新的变量或者集合(比如collect())，二是保存数据。特别说一下，reduceByKey不是行动操作，而是转换操作。</p>
+<h2 id="集合标量操作"><a href="#集合标量操作" class="headerlink" title="集合标量操作"></a>集合标量操作</h2><p><strong>first()</strong></p>
 <p>表示返回RDD中的第一个元素</p>
 <p><strong>count()</strong></p>
 <p>long表示返回RDD中的元素个数</p>
@@ -150,12 +130,10 @@ RDD的英文全称Resilient Distributed Dataset,中文名弹性分布式数据�
 <p>遍历rdd,将函数f应用于每一个元素，可以与积累器连用。特别说明一下，这个只会在Executor有效，在Driver端没用。</p>
 <p><strong>sortBy</strong></p>
 <p>根据排序函数对RDD进行排序。</p>
-<p>## 存储行动操作</p>
-<p><strong>saveAsTextFile()</strong></p>
+<h2 id="存储行动操作"><a href="#存储行动操作" class="headerlink" title="存储行动操作"></a>存储行动操作</h2><p><strong>saveAsTextFile()</strong></p>
 <p>保存rdd数据到指定目录中去。其中的codec可以指定文件压缩类型。</p>
-<p># 总结</p>
-<p>RDD的提出主要是为了解决MapReduce框架下的数据共享问题。然后介绍了RDD实现的方面、通用接口，最后介绍了四大操作。</p>
-</p></div><div class="share"><span>Share</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a href="http://twitter.com/home?status=http://yoursite.com/2019/04/06/Spark-RDD/%20理想與少年%20Spark RDD" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/2018/09/12/logging基本用法/" title="logging基本用法">Next post: logging基本用法&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div><div id="lv-container" data-id="city" data-uid="MTAyMC8zNTE2Mi8xMTY5Nw=="><script type="text/javascript">(function (d, s) {
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>RDD的提出主要是为了解决MapReduce框架下的数据共享问题。然后介绍了RDD实现的方面、通用接口，最后介绍了四大操作。</p>
+</p></div><div class="share"><span>分享到</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a href="http://twitter.com/home?status=http://yoursite.com/2019/04/06/Spark-RDD/%20理想與少年%20Spark RDD" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/2018/09/12/logging基本用法/" title="logging基本用法">下一篇: logging基本用法&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div><div id="lv-container" data-id="city" data-uid="MTAyMC8zNTE2Mi8xMTY5Nw=="><script type="text/javascript">(function (d, s) {
     var j, e = d.getElementsByTagName(s)[0];
     if (typeof LivereTower === 'function') {
         return;
