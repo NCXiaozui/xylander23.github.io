@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-28T16:06:16.808Z</updated>
+  <updated>2019-04-29T13:30:24.661Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2019/04/28/EM%E7%AE%97%E6%B3%95/"/>
     <id>http://yoursite.com/2019/04/28/EM算法/</id>
     <published>2019-04-28T15:56:23.000Z</published>
-    <updated>2019-04-28T16:06:16.808Z</updated>
+    <updated>2019-04-29T13:30:24.661Z</updated>
     
     <summary type="html">
     
@@ -30,7 +30,8 @@
         
         
           &lt;p&gt;EM算法在很多地方都用使用到，比如简单的K-means算法，还有在隐马尔可夫里面，也涉及到了EM算法，可见EM算法在机器学习领域的重要地位。&lt;/p&gt;
-&lt;p&gt;EM算法的全称叫做：期望最大。EM算法的想法很简单，就像一个人有两条腿向前走，你总是需要固定一条腿动另一条腿这样交替往
+&lt;p&gt;在这里主要是记录一下我对这个算法的理解。&lt;/p&gt;
+&lt;p&gt;EM算法的全称叫做：期望最大。EM算法的想法很简单，就像一个人
         
       
     
