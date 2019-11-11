@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-03-24T07:46:43.541Z</updated>
+  <updated>2019-11-11T14:42:22.384Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2019/11/11/docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/11/11/docker学习笔记/</id>
+    <published>2019-11-11T14:42:22.382Z</published>
+    <updated>2019-11-11T14:42:22.384Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;[TOC]&lt;br&gt;Docker是一个利用容器(container)来帮助开发人员或系统管理员建立、分享和运行应用的平台。使用容器去部署应用的方式叫做containerization。&lt;/p&gt;
+&lt;h1 id=&quot;Docker-基本概念&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
