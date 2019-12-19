@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-11-12T13:07:50.391Z</updated>
+  <updated>2019-12-19T12:57:28.061Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>处理数据.md</title>
+    <link href="http://yoursite.com/2019/12/19/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE/"/>
+    <id>http://yoursite.com/2019/12/19/处理数据/</id>
+    <published>2019-12-19T12:48:14.000Z</published>
+    <updated>2019-12-19T12:57:28.061Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;[toc]&lt;br&gt;C++数据类型可以分为两种，一种是基本类型，一种是复合类型，基本类型主要又分为整数和浮点数两种。本篇主要介绍是基本型。&lt;/p&gt;
+&lt;h1 id=&quot;变量名&quot;&gt;&lt;a href=&quot;#变量名&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="CS" scheme="http://yoursite.com/categories/CS/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker学习笔记</title>
